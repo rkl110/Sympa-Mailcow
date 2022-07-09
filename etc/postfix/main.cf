@@ -1,0 +1,20 @@
+myhostname = local.MAILCOW_DOMAIN
+alias_maps =
+  hash:/etc/sympa/aliases.sympa.postfix,
+  hash:/etc/mail/sympa/aliases,
+  hash:/etc/aliases
+alias_database =
+  hash:/etc/sympa/aliases.sympa.postfix,
+  hash:/etc/mail/sympa/aliases,
+  hash:/etc/aliases
+myorigin = /etc/mailname
+mydestination = SYMPA_DOMAIN, local.MAILCOW_DOMAIN, $myhostname, localhost.localdomain, localhost
+relayhost = 127.22.1.1
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 172.22.0.0/16
+recipient_delimiter = +
+inet_interfaces = loopback-only
+default_transport = relay
+relay_transport = smtp
+inet_protocols = all
+compatibility_level = 3.6
+smtpd_relay_restrictions = permit_mynetworks reject

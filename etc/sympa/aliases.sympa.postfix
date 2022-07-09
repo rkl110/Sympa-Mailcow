@@ -1,0 +1,13 @@
+# Robot aliases for Sympa.
+#
+# $LIBEXECDIR/ = /usr/lib/sympa/bin
+sympa:                 "| /usr/lib/sympa/bin/queue sympa@SYMPA_DOMAIN"
+listmaster:            "| /usr/lib/sympa/bin/queue listmaster@SYMPA_DOMAIN"
+bounce:                "| /usr/lib/sympa/bin/bouncequeue sympa@SYMPA_DOMAIN"
+abuse-feedback-report: "| /usr/lib/sympa/bin/bouncequeue sympa@SYMPA_DOMAIN"
+sympa-request:         postmaster
+sympa-owner:           postmaster
+#listserv:             sympa
+#listserv-request:     sympa-request
+#majordomo:            sympa
+#listserv-owner:       sympa-owner
