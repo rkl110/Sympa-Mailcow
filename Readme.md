@@ -386,7 +386,7 @@ EOF
 apt-get install --no-install-recommends --assume-yes sympa libapache2-mod-fcgid apache2-suexec-pristine
 ```
 
-#### Fix sympa logging
+#### Fix sympa logging, and docker syslog spam
 
 ```
 touch /var/log/sympa.log
@@ -394,6 +394,19 @@ chown syslog:adm /var/log/sympa.log
 sed -ri 's/create 640 sympa sympa/create 640 syslog adm/' /etc/logrotate.d/sympa
 systemctl restart logrotate.service
 ```
+
+```
+cat << EOF > sudo /etc/rsyslog.d/01-blocklist.conf
+if $msg contains "run-docker-runtime" and $msg contains ".mount: Succeeded." then {
+    stop
+}
+if $msg contains "run-docker-runtime" and $msg contains ".mount: Deactivated successfully." then {
+    stop
+}
+EOF
+systemctl restart rsyslog
+```
+
 
 #### [Setup Sympa Database strutkure](https://sympa-community.github.io/manual/install/setup-database-mysql.html)
 
