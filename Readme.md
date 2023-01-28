@@ -21,7 +21,7 @@ Clone Repository to: /opt/Sympa-Mailcow
 
 ```
 cd /opt
-git clone git@github.com:rkl110/Sympa-Mailcow.git
+git clone https://github.com/rkl110/Sympa-Mailcow.git
 ```
 
 ## Disclaimer
@@ -431,7 +431,7 @@ systemctl restart postfix
 systemctl restart wwsympa.service sympa.service
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 ```
 
